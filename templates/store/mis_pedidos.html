@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mis pedidos · SmartTech Store{% endblock %}
+
+{% block content %}
+<h1>Mis pedidos</h1>
+<p id="pedidos-msg" class="mensaje-api"></p>
+<div id="pedidos-lista"></div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/mis_pedidos.js' %}"></script>
+{% endblock %}

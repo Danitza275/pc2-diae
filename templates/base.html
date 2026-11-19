@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SmartTech Store{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  <header class="navbar">
+    <a class="brand" href="{% url 'store:home' %}">SmartTech <span>Store</span></a>
+
+    <nav class="nav-enlaces">
+      <a href="{% url 'store:home' %}">Inicio</a>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'store:carrito' %}">Carrito <span id="carrito-num" class="badge">0</span></a>
+        <a href="{% url 'store:mis_pedidos' %}">Mis pedidos</a>
+        <a href="{% url 'store:clasificar' %}">Clasificar</a>
+
+        {% if user.is_staff %}
+          <a href="{% url 'store:gestion_productos' %}">Productos</a>
+          <a href="{% url 'store:gestion_pedidos' %}">Pedidos</a>
+        {% endif %}
+
+        <span class="nav-usuario">Hola, {{ user.username }}</span>
+        <form method="post" action="{% url 'logout' %}" class="form-inline">{% csrf_token %}
+          <button type="submit" class="btn btn-suave">Cerrar sesión</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+        <a class="btn" href="{% url 'store:register' %}">Registrarse</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="pie">
+    SmartTech Store · Práctica universitaria · Django + Django REST Framework
+  </footer>
+
+  <script src="{% static 'js/api.js' %}"></script>
+  <script src="{% static 'js/carrito.js' %}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

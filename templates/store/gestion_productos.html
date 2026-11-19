@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Gestión de productos · SmartTech Store{% endblock %}
+
+{% block content %}
+<h1>Gestión de productos</h1>
+
+<section class="panel">
+  <h2 id="form-titulo">Nuevo producto</h2>
+  <p id="form-msg" class="mensaje-api"></p>
+
+  <form id="form-producto" class="form-admin">
+    <input type="hidden" id="prod-id">
+
+    <label>Nombre
+      <input type="text" id="prod-name" required maxlength="200">
+    </label>
+
+    <label>Descripción
+      <textarea id="prod-description" rows="2"></textarea>
+    </label>
+
+    <div class="fila">
+      <label>Precio (S/)
+        <input type="number" id="prod-price" step="0.01" min="0" required>
+      </label>
+      <label>Stock
+        <input type="number" id="prod-stock" min="0" required>
+      </label>
+      <label>Categoría
+        <select id="prod-category">
+          <option value="celulares">Celulares</option>
+          <option value="laptops">Laptops</option>
+          <option value="audifonos">Audífonos</option>
+          <option value="accesorios">Accesorios</option>
+          <option value="otros">Otros</option>
+        </select>
+      </label>
+    </div>
+
+    <label>Imagen (opcional)
+      <input type="file" id="prod-image" accept="image/*">
+    </label>
+
+    <label>URL del modelo 3D (opcional)
+      <input type="text" id="prod-model" placeholder="https://...glb">
+    </label>
+
+    <div class="fila-botones">
+      <button type="submit" class="btn">Guardar</button>
+      <button type="button" class="btn btn-suave" id="btn-cancelar">Cancelar</button>
+    </div>
+  </form>
+</section>
+
+<h2>Productos <span id="total-productos" class="texto-suave"></span></h2>
+<p id="tabla-msg" class="mensaje-api"></p>
+<div class="tabla-scroll">
+  <table class="tabla" id="tabla-productos">
+    <thead>
+      <tr>
+        <th>Imagen</th><th>Nombre</th><th>Categoría</th><th>Precio</th>
+        <th>Stock</th><th>3D</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/gestion_productos.js' %}"></script>
+{% endblock %}

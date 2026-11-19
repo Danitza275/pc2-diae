@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Clasificar imagen · SmartTech Store{% endblock %}
+
+{% block content %}
+<h1>Clasificar imagen</h1>
+<p class="texto-suave">
+  Sube una foto de un producto y el modelo <strong>google/vit-base-patch16-224</strong>
+  de Hugging Face la analiza con su Inference API.
+</p>
+
+<section class="panel">
+  <label class="caja-subir" for="archivo">
+    <input type="file" id="archivo" accept="image/*">
+    <span id="texto-archivo">Haz clic para elegir una imagen (JPG o PNG)</span>
+  </label>
+
+  <div id="vista-previa" class="vista-previa" hidden>
+    <img id="imagen-previa" alt="Vista previa de la imagen seleccionada">
+  </div>
+
+  <div class="fila-botones">
+    <button id="btn-analizar" class="btn" disabled>Analizar</button>
+  </div>
+
+  <p id="clasificar-msg" class="mensaje-api"></p>
+</section>
+
+<section id="resultado" hidden>
+  <h2>Resultados de la clasificación</h2>
+  <p id="modelo" class="texto-suave"></p>
+  <div id="barras" class="barras"></div>
+
+  <h2>Productos relacionados del catálogo</h2>
+  <div id="relacionados" class="grid-productos"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/clasificar.js' %}"></script>
+{% endblock %}

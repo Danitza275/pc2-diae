@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Inicio · SmartTech Store{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Productos de tecnología</h1>
+  <p>Encuentra celulares, laptops, audífonos y accesorios al mejor precio.</p>
+</section>
+
+<p id="mensaje" class="mensaje-carga">Cargando productos…</p>
+<div id="productos" class="grid-productos"
+     {% if user.is_authenticated and not user.is_staff %}data-comprar="1"{% endif %}></div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/catalogo.js' %}"></script>
+{% endblock %}

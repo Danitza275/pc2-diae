@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Carrito · SmartTech Store{% endblock %}
+
+{% block content %}
+<h1>Mi carrito</h1>
+<div id="carrito-lista"></div>
+<p id="carrito-msg" class="mensaje-api"></p>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/pagina_carrito.js' %}"></script>
+{% endblock %}

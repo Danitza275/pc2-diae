@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Gestión de pedidos · SmartTech Store{% endblock %}
+
+{% block content %}
+<h1>Todos los pedidos <span id="total-pedidos" class="texto-suave"></span></h1>
+<p class="texto-suave">Cambia el estado de cualquier pedido con el selector de la columna "Estado".</p>
+<p id="pedidos-msg" class="mensaje-api"></p>
+
+<div class="tabla-scroll">
+  <table class="tabla" id="tabla-pedidos">
+    <thead>
+      <tr>
+        <th>#</th><th>Cliente</th><th>Fecha</th><th>Productos</th>
+        <th>Total</th><th>Estado</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/gestion_pedidos.js' %}"></script>
+{% endblock %}
